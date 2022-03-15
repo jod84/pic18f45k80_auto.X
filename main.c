@@ -27,7 +27,17 @@ void main(void)
     
     INTCONbits.GIEH = 1;
     INTCONbits.GIEL = 1;
-
+    
+    for (uint8_t i=0; i<8; i++) {
+        LED_INT0_Toggle();
+        __delay_ms(125);
+        LED_INT1_Toggle();
+        __delay_ms(125);
+        LED_INT2_Toggle();
+        __delay_ms(125);
+        LED_INT3_Toggle();
+        __delay_ms(125);
+    }
 
     while (1)
     {

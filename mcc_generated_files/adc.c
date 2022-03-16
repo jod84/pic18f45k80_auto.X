@@ -66,11 +66,11 @@ void ADC_Initialize(void)
     // GO_nDONE stop; ADON enabled; CHS AN0; 
     ADCON0 = 0x01;
     
-    // TRIGSEL ECCP1; VNCFG AVSS; VCFG AVDD; CHSN AVss; 
-    ADCON1 = 0x00;
+    // TRIGSEL ECCP1; VNCFG AVSS; VCFG internal_4.096V; CHSN AN0; 
+    ADCON1 = 0x31;
     
-    // ADFM Left; ACQT 0_Tad; ADCS FOSC/2; 
-    ADCON2 = 0x00;
+    // ADFM Left; ACQT 0_Tad; ADCS FOSC/16; 
+    ADCON2 = 0x05;
     
     // ADRESH 0; 
     ADRESH = 0x00;

@@ -109,6 +109,22 @@
 #define RB3_SetPullup()             do { WPUBbits.WPUB3 = 1; } while(0)
 #define RB3_ResetPullup()           do { WPUBbits.WPUB3 = 0; } while(0)
 
+// get/set RC6 procedures
+#define RC6_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
+#define RC6_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
+#define RC6_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
+#define RC6_GetValue()              PORTCbits.RC6
+#define RC6_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
+#define RC6_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
+
+// get/set RC7 procedures
+#define RC7_SetHigh()            do { LATCbits.LATC7 = 1; } while(0)
+#define RC7_SetLow()             do { LATCbits.LATC7 = 0; } while(0)
+#define RC7_Toggle()             do { LATCbits.LATC7 = ~LATCbits.LATC7; } while(0)
+#define RC7_GetValue()              PORTCbits.RC7
+#define RC7_SetDigitalInput()    do { TRISCbits.TRISC7 = 1; } while(0)
+#define RC7_SetDigitalOutput()   do { TRISCbits.TRISC7 = 0; } while(0)
+
 // get/set LED_INT0 aliases
 #define LED_INT0_TRIS                 TRISDbits.TRISD0
 #define LED_INT0_LAT                  LATDbits.LATD0

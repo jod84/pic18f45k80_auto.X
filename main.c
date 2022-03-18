@@ -18,10 +18,10 @@ void uart_init(uint16_t gen_reg, uint16_t sync, uint16_t brgh, uint16_t brg16) {
     TXSTA1bits.BRGH = brgh;
     TXSTA1bits.TXEN = 1;
     
-    IPR1bits.RC1IP = 1;
+    IPR1bits.RC1IP = 1; // recieve is a high priority
     PIE1bits.RC1IE = 1;
     
-    IPR1bits.TX1IP = 0;
+    IPR1bits.TX1IP = 1;// 0; // send is  low priority
     PIE1bits.TX1IE = 1;
 }
 
@@ -50,13 +50,14 @@ void main(void)
     INTCONbits.GIEH = 1;
     INTCONbits.GIEL = 1;
     
+    /*
     OSCCONbits.IRCF = 0x07;
     OSCCONbits.SCS = 0x02; //0x03
     while(OSCCONbits.HFIOFS != 1);
     
     RCONbits.IPEN = 1;
     INTCONbits.GIEH = 1;
-    INTCONbits.GIEL = 1;
+    INTCONbits.GIEL = 1;//*/
     
     for (uint8_t i=0; i<8; i++) {
         LED_INT0_Toggle();

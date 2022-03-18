@@ -103,11 +103,9 @@ void EUSART1_Initialize(void)
     // TX9 8-bit; TX9D 0; SENDB sync_break_complete; TXEN enabled; SYNC asynchronous; BRGH hi_speed; CSRC slave_mode; 
     TXSTA1 = 0x24;
 
-    // 
-    SPBRG1 = 0xCF;
-
-    // 
-    SPBRGH1 = 0x00;
+    // 0x0010 = 16
+    SPBRG1  =  0x0010 & 0x00FF;        // SPBRG low bit
+    SPBRGH1 = (0x0010 & 0xFF00) >> 8;  // SPBRG high bit
 
 
     EUSART1_SetFramingErrorHandler(EUSART1_DefaultFramingErrorHandler);
@@ -125,8 +123,12 @@ void EUSART1_Initialize(void)
     eusart1RxTail = 0;
     eusart1RxCount = 0;
 
-    // enable receive interrupt
-    PIE1bits.RC1IE = 1;
+    
+    IPR1bits.RC1IP = 1; // receive is a high priority
+    PIE1bits.RC1IE = 1; // enable receive interrupt
+    
+    IPR1bits.TX1IP = 1;// 0; // send is  low priority
+    PIE1bits.TX1IE = 1;
 }
 
 bool EUSART1_is_tx_ready(void)
